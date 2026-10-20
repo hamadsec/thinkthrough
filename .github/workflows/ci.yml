@@ -19,13 +19,13 @@ jobs:
       - name: Install
         run: |
           if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; elif [ -f package.json ]; then pnpm install; else echo "no package.json yet"; fi
-      - name: Lint / typecheck / test / build (scripts that exist)
+      - name: Lint / typecheck / test / build (root scripts drive turbo, which orders packages by dependencies)
         run: |
           if [ -f package.json ]; then
-            pnpm -r --if-present run lint
-            pnpm -r --if-present run typecheck
-            pnpm -r --if-present run test
-            pnpm -r --if-present run build
+            pnpm run --if-present lint
+            pnpm run --if-present build
+            pnpm run --if-present typecheck
+            pnpm run --if-present test
           fi
       - name: Repo sanity
         run: test -f docs/product-plan-v4.md && test -f CODEOWNERS
