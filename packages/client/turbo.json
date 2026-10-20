@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "generate": {
+      "dependsOn": ["@thinkthrough/api#openapi"],
+      "inputs": ["openapi.json"],
+      "outputs": ["src/schema.d.ts"]
+    },
+    "build": { "dependsOn": ["^build", "generate"] },
+    "typecheck": { "dependsOn": ["^build", "generate"] }
+  }
+}
