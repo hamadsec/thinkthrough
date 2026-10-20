@@ -1,6 +1,12 @@
 import { z } from "zod";
 
-export const FindingKind = z.enum(["fact", "inference", "estimate", "unknown", "general_knowledge"]);
+export const FindingKind = z.enum([
+  "fact",
+  "inference",
+  "estimate",
+  "unknown",
+  "general_knowledge",
+]);
 export type FindingKind = z.infer<typeof FindingKind>;
 
 export const Verification = z.enum(["supported", "contradicted", "insufficient", "unverified"]);
