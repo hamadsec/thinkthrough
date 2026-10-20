@@ -1,0 +1,15 @@
+{
+  "name": "thinkthrough",
+  "private": true,
+  "packageManager": "pnpm@10.34.7",
+  "scripts": {
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "build": "turbo run build"
+  },
+  "devDependencies": {
+    "turbo": "2.11.9",
+    "typescript": "7.0.2"
+  }
+}
