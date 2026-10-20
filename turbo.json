@@ -8,7 +8,7 @@
     "typecheck": {
       "dependsOn": ["^build"]
     },
-    "test": {},
+    "test": { "dependsOn": ["^build"] },
     "openapi": {
       "dependsOn": ["^build"],
       "outputs": ["../../packages/client/openapi.json"]
