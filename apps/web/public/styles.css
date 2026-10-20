@@ -1,0 +1,111 @@
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1917;
+  --muted: #57534e;
+  --accent: #4338ca;
+  --accent-fg: #fff;
+  --border: #d6d3d1;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14120f;
+    --fg: #f5f5f4;
+    --muted: #a8a29e;
+    --accent: #a5b4fc;
+    --accent-fg: #14120f;
+    --border: #44403c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font:
+    1rem / 1.6 system-ui,
+    sans-serif;
+}
+
+.hero,
+main,
+footer {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0.5rem 0 1rem;
+}
+
+h2 {
+  margin-top: 2.5rem;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.steps {
+  padding-left: 1.25rem;
+}
+
+.steps h3 {
+  margin: 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.4rem;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.note,
+footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (min-width: 40rem) {
+  h1 {
+    font-size: 2.75rem;
+  }
+}

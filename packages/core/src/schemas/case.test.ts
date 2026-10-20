@@ -5,8 +5,20 @@ import { Evidence } from "./evidence.js";
 describe("Case", () => {
   it("round-trips a case with statements", () => {
     const statements = [
-      { id: "s1", caseId: "c1", version: 1, text: "Should we enter market X?", createdAt: "2026-01-01T00:00:00.000Z" },
-      { id: "s2", caseId: "c1", version: 2, text: "Should we enter market X in 2027?", createdAt: "2026-01-02T00:00:00.000Z" },
+      {
+        id: "s1",
+        caseId: "c1",
+        version: 1,
+        text: "Should we enter market X?",
+        createdAt: "2026-01-01T00:00:00.000Z",
+      },
+      {
+        id: "s2",
+        caseId: "c1",
+        version: 2,
+        text: "Should we enter market X in 2027?",
+        createdAt: "2026-01-02T00:00:00.000Z",
+      },
     ];
     const c = {
       id: "c1",
@@ -23,7 +35,15 @@ describe("Case", () => {
   });
 
   it("rejects statement version 0", () => {
-    expect(Statement.safeParse({ id: "s", caseId: "c", version: 0, text: "t", createdAt: "2026-01-01T00:00:00Z" }).success).toBe(false);
+    expect(
+      Statement.safeParse({
+        id: "s",
+        caseId: "c",
+        version: 0,
+        text: "t",
+        createdAt: "2026-01-01T00:00:00Z",
+      }).success,
+    ).toBe(false);
   });
 });
 

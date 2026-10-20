@@ -1,4 +1,4 @@
-import { OpenAPIHono, createRoute, z } from "@hono/zod-openapi";
+import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { CORE_VERSION } from "@thinkthrough/core";
 
 export const HealthSchema = z

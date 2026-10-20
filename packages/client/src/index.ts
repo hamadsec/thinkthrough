@@ -1,7 +1,7 @@
 import type { components } from "./schema.js";
 
 export type Health = components["schemas"]["Health"];
-export type { paths, components } from "./schema.js";
+export type { components, paths } from "./schema.js";
 
 export function createClient(baseUrl: string, fetchImpl: typeof fetch = fetch) {
   const root = baseUrl.replace(/\/+$/, "");

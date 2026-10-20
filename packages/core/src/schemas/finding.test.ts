@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Finding, assertClaimGate } from "./finding.js";
+import { assertClaimGate, Finding } from "./finding.js";
 
 const base = { id: "f1", verification: "unverified" as const, evidenceIds: [] as string[] };
 
@@ -11,7 +11,11 @@ describe("claim gate", () => {
   });
 
   it("rejects a fact without evidence", () => {
-    const r = Finding.safeParse({ ...base, kind: "fact", statement: "The company is based in Helsinki" });
+    const r = Finding.safeParse({
+      ...base,
+      kind: "fact",
+      statement: "The company is based in Helsinki",
+    });
     expect(r.success).toBe(false);
   });
 
@@ -46,15 +50,24 @@ describe("claim gate", () => {
   });
 
   it("rejects a numeric inference without evidence", () => {
-    const r = Finding.safeParse({ ...base, kind: "inference", statement: "Churn is likely above 5%" });
+    const r = Finding.safeParse({
+      ...base,
+      kind: "inference",
+      statement: "Churn is likely above 5%",
+    });
     expect(r.success).toBe(false);
   });
 
   it("accepts an unknown without evidence", () => {
-    expect(Finding.safeParse({ ...base, kind: "unknown", statement: "Market size in 2030 is unknown" }).success).toBe(true);
+    expect(
+      Finding.safeParse({ ...base, kind: "unknown", statement: "Market size in 2030 is unknown" })
+        .success,
+    ).toBe(true);
   });
 
   it("assertClaimGate throws a readable error", () => {
-    expect(() => assertClaimGate({ ...base, kind: "fact", statement: "x" })).toThrow(/Claim gate failed for finding "f1"/);
+    expect(() => assertClaimGate({ ...base, kind: "fact", statement: "x" })).toThrow(
+      /Claim gate failed for finding "f1"/,
+    );
   });
 });
