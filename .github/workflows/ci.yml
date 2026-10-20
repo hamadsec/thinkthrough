@@ -1,0 +1,31 @@
+# CI only: install, lint, typecheck, test, build across the pnpm workspace. No deploy job (owner-added later, if ever).
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Enable pnpm via corepack
+        run: corepack enable
+      - name: Install
+        run: |
+          if [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile; elif [ -f package.json ]; then pnpm install; else echo "no package.json yet"; fi
+      - name: Lint / typecheck / test / build (scripts that exist)
+        run: |
+          if [ -f package.json ]; then
+            pnpm -r --if-present run lint
+            pnpm -r --if-present run typecheck
+            pnpm -r --if-present run test
+            pnpm -r --if-present run build
+          fi
+      - name: Repo sanity
+        run: test -f docs/product-plan-v4.md && test -f CODEOWNERS
