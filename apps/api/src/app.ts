@@ -1,5 +1,6 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { CORE_VERSION } from "@thinkthrough/core";
+import { createCasesRouter } from "./cases.js";
 
 export const HealthSchema = z
   .object({
@@ -27,5 +28,7 @@ export const app = new OpenAPIHono();
 app.openapi(healthRoute, (c) =>
   c.json({ status: "ok" as const, version: CORE_VERSION, time: new Date().toISOString() }, 200),
 );
+
+app.route("/", createCasesRouter());
 
 app.doc31("/v1/openapi.json", { openapi: "3.1.0", info: openApiInfo });
