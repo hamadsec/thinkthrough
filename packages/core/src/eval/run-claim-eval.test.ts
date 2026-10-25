@@ -81,10 +81,7 @@ describe("runClaimEval", () => {
   });
 
   it("sends one verifier request per fixture with claim and excerpt in the prompt", async () => {
-    const fixtures = [
-      fixture("a", "supported", "the claim text"),
-      fixture("b", "insufficient"),
-    ];
+    const fixtures = [fixture("a", "supported", "the claim text"), fixture("b", "insufficient")];
     const gw = new ScriptedGateway([{ parsed: "supported" }, { parsed: "insufficient" }]);
     await runClaimEval(fixtures, gw);
     expect(gw.requests).toHaveLength(2);

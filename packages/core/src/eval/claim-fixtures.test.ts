@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { CLAIMS_V0 } from "./claims-v0.js";
 import { loadClaimFixtures } from "./claim-fixtures.js";
+import { CLAIMS_V0 } from "./claims-v0.js";
 
 const valid = { id: "c1", claim: "a claim", sourceExcerpt: "a source", expectedLabel: "supported" };
 
